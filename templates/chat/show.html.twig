@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chat n°{{ chat.id }}{% endblock %}
+
+{% block body %}
+    <h1>Chat</h1>
+
+    {% dump chat %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ chat.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ chat.nom }}</td>
+            </tr>
+            <tr>
+                <th>Âge</th>
+                <td>{{ chat.age }}</td>
+            </tr>
+            <tr>
+                <th>Race</th>
+                <td>{{ chat.race }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ chat.sexe }}</td>
+            </tr>
+            <tr>
+                <th>État de santé</th>
+                <td>{{ chat.etatSante }}</td>
+    </tr>
+            <tr>
+                <th>Statut</th>
+                <td>{{ chat.statut }}</td>
+            </tr>
+            <tr>
+                <th>Refuge</th>
+        <td>{{ chat.idRefuge.nom }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('refuge_show', {'id': chat.idRefuge.id}) }}">Retour au refuge</a>
+{% endblock %}

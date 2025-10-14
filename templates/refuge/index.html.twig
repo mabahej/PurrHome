@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des refuges{% endblock %}
+
+{% block body %}
+    <h1>Liste des refuges (inventaires)</h1>
+    
+    <ul>
+        {% for refuge in refuges %}
+            <li>
+                <a href="{{ path('refuge_show', {'id': refuge.id}) }}">
+                    {{ refuge.nom }} ({{ refuge.localisation }})
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

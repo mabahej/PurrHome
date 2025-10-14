@@ -1,0 +1,17 @@
+Checklist du projet PurrHome – Tout terminé ✅
+-------------------------------------------------------
+1. Cahier des charges                     : ✅
+2. Initialisation du projet Symfony       : ✅
+3. Gestion du code avec Git               : ✅
+4. Modèle de données ([inventaire], [objet]) : ✅
+4.1 Entité [inventaire]                   : ✅
+4.2 Entité [objet]                        : ✅
+4.3 Association 1-N ([inventaire] → [objet]) : ✅
+4.4 Propriétés optionnelles des [objets] : ✅
+5. Fixtures pour tests                     : ✅
+6. Front-office consultation des [inventaires] : ✅
+7. Gabarits Twig                           : ✅
+8. CSS / Bootstrap                         : ✅
+9. Entité Membre + lien 1-1               : ✅
+10. Menus de navigation                     : ✅
+11. Entité [galerie] + association M-N     : ✅

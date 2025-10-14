@@ -1,17 +1,84 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>🐱</text></svg>">
+
+    {% block stylesheets %}
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    {% endblock %}
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#!">
+                <svg class="cat-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                    <!-- Cat head -->
+                    <circle cx="50" cy="55" r="30" fill="#ff9a56"/>
+                    <!-- Left ear -->
+                    <path d="M 30 35 L 20 15 L 35 30 Z" fill="#ff9a56"/>
+                    <!-- Right ear -->
+                    <path d="M 70 35 L 80 15 L 65 30 Z" fill="#ff9a56"/>
+                    <!-- Inner left ear -->
+                    <path d="M 30 35 L 25 22 L 33 32 Z" fill="#ffd4b8"/>
+                    <!-- Inner right ear -->
+                    <path d="M 70 35 L 75 22 L 67 32 Z" fill="#ffd4b8"/>
+                    <!-- Left eye -->
+                    <ellipse cx="42" cy="52" rx="4" ry="6" fill="#2c1810"/>
+                    <!-- Right eye -->
+                    <ellipse cx="58" cy="52" rx="4" ry="6" fill="#2c1810"/>
+                    <!-- Nose -->
+                    <path d="M 50 58 L 47 62 L 50 63 L 53 62 Z" fill="#2c1810"/>
+                    <!-- Mouth -->
+                    <path d="M 50 63 Q 45 66 42 65 M 50 63 Q 55 66 58 65" stroke="#2c1810" stroke-width="1.5" fill="none"/>
+                    <!-- Whiskers left -->
+                    <line x1="35" y1="54" x2="20" y2="52" stroke="#2c1810" stroke-width="1"/>
+                    <line x1="35" y1="58" x2="20" y2="60" stroke="#2c1810" stroke-width="1"/>
+                    <!-- Whiskers right -->
+                    <line x1="65" y1="54" x2="80" y2="52" stroke="#2c1810" stroke-width="1"/>
+                    <line x1="65" y1="58" x2="80" y2="60" stroke="#2c1810" stroke-width="1"/>
+                </svg>
+                Purr Home
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                    {{ render_bootstrap_menu('main') }}
+                </ul>
+
+                <form class="d-flex">
+                    <button class="btn btn-outline-dark" type="submit">
+                        <i class="bi-cart-fill me-1"></i>
+                        Cart
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    {% block body %}
+    {# Page-specific content goes here #}
+    {% endblock %}
+
+    {% block javascripts %}
+    <!-- Bootstrap core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    {% endblock %}
+</body>
 </html>

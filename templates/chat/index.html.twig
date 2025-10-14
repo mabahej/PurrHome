@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des Chats{% endblock %}
+
+{% block body %}
+    <h1>Liste des Chats</h1>
+
+    <ul>
+        {% for chat in chats %}
+            <li>
+                <a href="{{ path('chat_show', {id: chat.id}) }}">
+                    {{ chat.nom }} ({{ chat.race }}) - {{ chat.statut }}
+                </a>
+            </li>
+        {% else %}
+            <li>Aucun chat disponible.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

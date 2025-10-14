@@ -1,0 +1,10 @@
+bootstrap_menu:
+  menus:
+    main:
+      items:
+        refuge:
+          label: 'Refuge'
+          route: 'app_refuge'   # <-- nom exact de la route
+        cats:
+          label: 'Chats'
+          route: 'app_chat'    # ou 'app_chat' selon ce que tu veux

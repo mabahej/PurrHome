@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Refuge n°{{ refuge.id }}{% endblock %}
+
+{% block body %}
+    <h1>Refuge</h1>
+
+    {% dump refuge %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ refuge.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ refuge.nom }}</td>
+            </tr>
+            <tr>
+                <th>Localisation</th>
+                <td>{{ refuge.localisation }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ refuge.contact }}</td>
+            </tr>
+            <tr>
+                <th>Chats</th>
+                <td>
+                    <ul>
+                        {% for chat in refuge.chats %}
+                            <li>
+                                <a href="{{ path('chat_show', {'id': chat.id}) }}">{{ chat }}</a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_refuge') }}">Retour à la liste</a>
+{% endblock %}
