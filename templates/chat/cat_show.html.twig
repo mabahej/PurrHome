@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Chat {{ chat.nom }}{% endblock %}
+
+{% block body %}
+  <h1>{{ chat.nom }}</h1>
+
+  <table class="table">
+    <tr><th>Âge</th><td>{{ chat.age }}</td></tr>
+    <tr><th>Race</th><td>{{ chat.race }}</td></tr>
+    <tr><th>Sexe</th><td>{{ chat.sexe }}</td></tr>
+    <tr><th>État de santé</th><td>{{ chat.etatSante }}</td></tr>
+    <tr><th>Statut</th><td>{{ chat.statut }}</td></tr>
+  </table>
+
+  <a class="btn btn-secondary" href="{{ path('app_vitrine_show', {'id': chat.vitrine.id}) }}">
+    Retour à la vitrine
+  </a>
+{% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Vitrine;
 use App\Entity\Chat;
+use App\Entity\Member;
 use App\Form\VitrineType;
 use App\Repository\VitrineRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -20,29 +21,49 @@ final class VitrineController extends AbstractController
     public function index(VitrineRepository $vitrineRepository): Response
     {
         return $this->render('vitrine/index.html.twig', [
-            'vitrines' => $vitrineRepository->findAll(),
+            'vitrines' => $vitrineRepository->findBy(['publiee' => true]),
         ]);
     }
-
-    #[Route('/new', name: 'app_vitrine_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    
+    #[Route('/vitrine/new/{id}', name: 'app_vitrine_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, Member $membre): Response
     {
+        // Create a single Vitrine for this member
         $vitrine = new Vitrine();
+        $vitrine->setCreateur($membre);
+        
+        // Build the form
         $form = $this->createForm(VitrineType::class, $vitrine);
         $form->handleRequest($request);
-
+        
+        // Process the form
         if ($form->isSubmitted() && $form->isValid()) {
+            // Get selected chats from the form (if applicable)
+            $selectedChats = $form->get('chatsSelection')->getData() ?? [];
+            
+            // Add all selected chats to the same vitrine
+            foreach ($selectedChats as $chat) {
+                $vitrine->addChat($chat);
+            }
+            
+            // Persist and flush once
             $entityManager->persist($vitrine);
             $entityManager->flush();
-
-            return $this->redirectToRoute('app_vitrine_index', [], Response::HTTP_SEE_OTHER);
+            
+            // Redirect back to the member page
+            return $this->redirectToRoute('app_membre_show', [
+                'id' => $membre->getId(),
+            ], Response::HTTP_SEE_OTHER);
         }
-
+        
+        // Render the form view
         return $this->render('vitrine/new.html.twig', [
             'vitrine' => $vitrine,
             'form' => $form,
         ]);
     }
+    
+    
 
     #[Route('/{id}', name: 'app_vitrine_show', methods: ['GET'])]
     public function show(Vitrine $vitrine): Response
@@ -61,7 +82,9 @@ final class VitrineController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_vitrine_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_membre_show', [
+                'id' => $vitrine->getCreateur()->getId(),
+            ], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('vitrine/edit.html.twig', [
@@ -78,7 +101,10 @@ final class VitrineController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('app_vitrine_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_membre_show', [
+            'id' => $vitrine->getCreateur()->getId(),
+        ], Response::HTTP_SEE_OTHER);
+        
     }
     #[Route('/{vitrine_id}/chat/{chat_id}', name: 'app_vitrine_chat_show')]
     public function chatShow(
@@ -89,8 +115,11 @@ final class VitrineController extends AbstractController
             if (!$vitrine->getChats()->contains($chat)) {
                 throw $this->createNotFoundException("Ce chat n'appartient pas à cette vitrine !");
             }
-            
-            return $this->render('vitrine/chat_show.html.twig', [
+            if (! $vitrine->isPubliee()) {
+                 throw $this->createAccessDeniedException("You cannot access the requested resource!");
+                }
+                
+            return $this->render('chat/show.html.twig', [
                 'vitrine' => $vitrine,
                 'chat' => $chat,
             ]);

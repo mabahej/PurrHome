@@ -35,5 +35,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_vitrine_new') }}">Create new</a>
+<a href="{{ path('app_vitrine_new', {'id': vitrines[0].createur.id}) }}">Créer une nouvelle vitrine</a>
 {% endblock %}

@@ -31,7 +31,7 @@
                     <ul>
                         {% for chat in refuge.chats %}
                             <li>
-                                <a href="{{ path('chat_show', {'id': chat.id}) }}">{{ chat }}</a>
+<a href="{{ path('app_chat_index', {'id': chat.id}) }}">Voir le chat</a>
                             </li>
                         {% endfor %}
                     </ul>
@@ -41,4 +41,10 @@
     </table>
 
     <a href="{{ path('app_refuge') }}">Retour à la liste</a>
+    <a href="{{ path('app_chat_new', {'id': refuge.id}) }}">Ajouter un chat</a>
+    
+    <a href="{{ path('app_membre_show', {'id': refuge.member.id}) }}">
+    ← Retour au membre
+</a>
+    
 {% endblock %}

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\DataFixtures;
 
 use App\Entity\Chat;
@@ -21,152 +22,42 @@ class ChatFixtures extends Fixture implements DependentFixtureInterface
     public const CHAT_MAX = 'chat-max';
     public const CHAT_CLEO = 'chat-cleo';
     public const CHAT_CHARLIE = 'chat-charlie';
-
+    
     public function load(ObjectManager $manager): void
     {
         $chatsData = [
-            [
-                'nom' => 'Minou',
-                'age' => 3,
-                'race' => 'Européen',
-                'sexe' => 'M',
-                'etat_sante' => 'Bonne santé',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_PARIS,
-                'reference' => self::CHAT_MINOU
-            ],
-            [
-                'nom' => 'Felix',
-                'age' => 5,
-                'race' => 'Siamois',
-                'sexe' => 'M',
-                'etat_sante' => 'Excellent',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_PARIS,
-                'reference' => self::CHAT_FELIX
-            ],
-            [
-                'nom' => 'Luna',
-                'age' => 2,
-                'race' => 'Persan',
-                'sexe' => 'F',
-                'etat_sante' => 'Bonne santé',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_PARIS,
-                'reference' => self::CHAT_LUNA
-            ],
-            [
-                'nom' => 'Tigrou',
-                'age' => 4,
-                'race' => 'Maine Coon',
-                'sexe' => 'M',
-                'etat_sante' => 'Traitement en cours',
-                'statut' => 'En observation',
-                'refuge' => RefugeFixtures::REFUGE_LYON,
-                'reference' => self::CHAT_TIGROU
-            ],
-            [
-                'nom' => 'Nala',
-                'age' => 1,
-                'race' => 'Bengal',
-                'sexe' => 'F',
-                'etat_sante' => 'Excellente',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_LYON,
-                'reference' => self::CHAT_NALA
-            ],
-            [
-                'nom' => 'Simba',
-                'age' => 6,
-                'race' => 'Chartreux',
-                'sexe' => 'M',
-                'etat_sante' => 'Bonne santé',
-                'statut' => 'Réservé',
-                'refuge' => RefugeFixtures::REFUGE_LYON,
-                'reference' => self::CHAT_SIMBA
-            ],
-            [
-                'nom' => 'Minette',
-                'age' => 7,
-                'race' => 'Européen',
-                'sexe' => 'F',
-                'etat_sante' => 'Bonne santé',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_MARSEILLE,
-                'reference' => self::CHAT_MINETTE
-            ],
-            [
-                'nom' => 'Oscar',
-                'age' => 3,
-                'race' => 'British Shorthair',
-                'sexe' => 'M',
-                'etat_sante' => 'Excellent',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_MARSEILLE,
-                'reference' => self::CHAT_OSCAR
-            ],
-            [
-                'nom' => 'Bella',
-                'age' => 2,
-                'race' => 'Ragdoll',
-                'sexe' => 'F',
-                'etat_sante' => 'Bonne santé',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_MARSEILLE,
-                'reference' => self::CHAT_BELLA
-            ],
-            [
-                'nom' => 'Max',
-                'age' => 4,
-                'race' => 'Sacré de Birmanie',
-                'sexe' => 'M',
-                'etat_sante' => 'Excellent',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_TOULOUSE,
-                'reference' => self::CHAT_MAX
-            ],
-            [
-                'nom' => 'Cleo',
-                'age' => 5,
-                'race' => 'Sphynx',
-                'sexe' => 'F',
-                'etat_sante' => 'Bonne santé',
-                'statut' => 'Adopté',
-                'refuge' => RefugeFixtures::REFUGE_TOULOUSE,
-                'reference' => self::CHAT_CLEO
-            ],
-            [
-                'nom' => 'Charlie',
-                'age' => 1,
-                'race' => 'Européen',
-                'sexe' => 'M',
-                'etat_sante' => 'Excellente',
-                'statut' => 'Disponible',
-                'refuge' => RefugeFixtures::REFUGE_TOULOUSE,
-                'reference' => self::CHAT_CHARLIE
-            ],
+            ['nom'=>'Minou','age'=>3,'race'=>'Européen','sexe'=>'M','etatSante'=>'Bonne santé','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_PARIS,'ref'=>self::CHAT_MINOU],
+            ['nom'=>'Felix','age'=>5,'race'=>'Siamois','sexe'=>'M','etatSante'=>'Excellent','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_PARIS,'ref'=>self::CHAT_FELIX],
+            ['nom'=>'Luna','age'=>2,'race'=>'Persan','sexe'=>'F','etatSante'=>'Bonne santé','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_PARIS,'ref'=>self::CHAT_LUNA],
+            ['nom'=>'Tigrou','age'=>4,'race'=>'Maine Coon','sexe'=>'M','etatSante'=>'Traitement en cours','statut'=>'En observation','refuge'=>RefugeFixtures::REFUGE_LYON,'ref'=>self::CHAT_TIGROU],
+            ['nom'=>'Nala','age'=>1,'race'=>'Bengal','sexe'=>'F','etatSante'=>'Excellente','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_LYON,'ref'=>self::CHAT_NALA],
+            ['nom'=>'Simba','age'=>6,'race'=>'Chartreux','sexe'=>'M','etatSante'=>'Bonne santé','statut'=>'Réservé','refuge'=>RefugeFixtures::REFUGE_LYON,'ref'=>self::CHAT_SIMBA],
+            ['nom'=>'Minette','age'=>7,'race'=>'Européen','sexe'=>'F','etatSante'=>'Bonne santé','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_MARSEILLE,'ref'=>self::CHAT_MINETTE],
+            ['nom'=>'Oscar','age'=>3,'race'=>'British Shorthair','sexe'=>'M','etatSante'=>'Excellent','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_MARSEILLE,'ref'=>self::CHAT_OSCAR],
+            ['nom'=>'Bella','age'=>2,'race'=>'Ragdoll','sexe'=>'F','etatSante'=>'Bonne santé','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_MARSEILLE,'ref'=>self::CHAT_BELLA],
+            ['nom'=>'Max','age'=>4,'race'=>'Sacré de Birmanie','sexe'=>'M','etatSante'=>'Excellent','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_TOULOUSE,'ref'=>self::CHAT_MAX],
+            ['nom'=>'Cleo','age'=>5,'race'=>'Sphynx','sexe'=>'F','etatSante'=>'Bonne santé','statut'=>'Adopté','refuge'=>RefugeFixtures::REFUGE_TOULOUSE,'ref'=>self::CHAT_CLEO],
+            ['nom'=>'Charlie','age'=>1,'race'=>'Européen','sexe'=>'M','etatSante'=>'Excellente','statut'=>'Disponible','refuge'=>RefugeFixtures::REFUGE_TOULOUSE,'ref'=>self::CHAT_CHARLIE],
         ];
-
+        
         foreach ($chatsData as $data) {
             $chat = new Chat();
             $chat->setNom($data['nom']);
             $chat->setAge($data['age']);
             $chat->setRace($data['race']);
             $chat->setSexe($data['sexe']);
-            $chat->setEtatSante($data['etat_sante']);
+            $chat->setEtatSante($data['etatSante']);
             $chat->setStatut($data['statut']);
-            $chat->setIdRefuge($this->getReference($data['refuge'],Refuge::class));
+            $chat->setIdRefuge($this->getReference($data['refuge'], Refuge::class));
             $manager->persist($chat);
-            $this->addReference($data['reference'], $chat);
+            $this->addReference($data['ref'], $chat);
         }
-
+        
         $manager->flush();
     }
-
+    
     public function getDependencies(): array
     {
-        return [
-            RefugeFixtures::class,
-        ];
+        return [RefugeFixtures::class];
     }
 }

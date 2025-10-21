@@ -1,47 +1,43 @@
+{# templates/vitrine/show.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Vitrine{% endblock %}
+{% block title %}Vitrine {{ vitrine.id }}{% endblock %}
 
 {% block body %}
-    <h1>Vitrine</h1>
+<h1>Vitrine: {{ vitrine.id }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ vitrine.id }}</td>
-            </tr>
-            <tr>
-                <th>Photo_url</th>
-                <td>{{ vitrine.photoUrl }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ vitrine.description }}</td>
-            </tr>
-            <tr>
-                <th>Publiee</th>
-                <td>{{ vitrine.publiee ? 'Yes' : 'No' }}</td>
-            </tr>
-           <ul>
-  {% for chat in vitrine.chats %}
-    <li>
-      <a href="{{ path('app_vitrine_chat_show', {
-        'vitrine_id': vitrine.id,
-        'chat_id': chat.id
-      }) }}">
-        {{ chat }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
-            
-        </tbody>
-    </table>
+<table class="table">
+  <tr>
+    <th>Photo</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>
+      {% if vitrine.photoUrl %}
+        <img src="{{ vitrine.photoUrl }}" alt="photo" style="max-width:150px;">
+      {% endif %}
+    </td>
+    <td>{{ vitrine.description }}</td>
+  </tr>
 
-    <a href="{{ path('app_vitrine_index') }}">back to list</a>
+  <tr>
+    <th>Objets (chats)</th>
+    <td>
+      <ul>
+        {% for chat in vitrine.chats %}
+          <li>
+            <a href="{{ path('app_vitrine_chat_show', { 'vitrine_id': vitrine.id, 'chat_id': chat.id }) }}">
+              {{ chat.nom }}
+            </a>
+          </li>
+        {% else %}
+          <li>Aucun chat dans cette vitrine.</li>
+        {% endfor %}
+      </ul>
+    </td>
+  </tr>
+</table>
 
-    <a href="{{ path('app_vitrine_edit', {'id': vitrine.id}) }}">edit</a>
 
-    {{ include('vitrine/_delete_form.html.twig') }}
+<a class="btn btn-secondary" href="{{ path('app_vitrine_new', {'id': vitrine.createur.id}) }}">Retour</a>
 {% endblock %}

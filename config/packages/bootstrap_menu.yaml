@@ -7,4 +7,4 @@ bootstrap_menu:
           route: 'app_refuge'   # <-- nom exact de la route
         cats:
           label: 'Chats'
-          route: 'app_chat'    # ou 'app_chat' selon ce que tu veux
+          route: 'app_chat_index'    # ou 'app_chat' selon ce que tu veux

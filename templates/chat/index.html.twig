@@ -1,19 +1,44 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des Chats{% endblock %}
+{% block title %}Chat index{% endblock %}
 
 {% block body %}
-    <h1>Liste des Chats</h1>
+    <h1>Chat index</h1>
 
-    <ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Age</th>
+                <th>Race</th>
+                <th>Sexe</th>
+                <th>Etat_sante</th>
+                <th>Statut</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
         {% for chat in chats %}
-            <li>
-                <a href="{{ path('chat_show', {id: chat.id}) }}">
-                    {{ chat.nom }} ({{ chat.race }}) - {{ chat.statut }}
-                </a>
-            </li>
+            <tr>
+                <td>{{ chat.id }}</td>
+                <td>{{ chat.nom }}</td>
+                <td>{{ chat.age }}</td>
+                <td>{{ chat.race }}</td>
+                <td>{{ chat.sexe }}</td>
+                <td>{{ chat.etatSante }}</td>
+                <td>{{ chat.statut }}</td>
+                <td>
+                    <a href="{{ path('app_chat_index', {'id': chat.id}) }}">show</a>
+                    <a href="{{ path('app_chat_edit', {'id': chat.id}) }}">edit</a>
+                </td>
+            </tr>
         {% else %}
-            <li>Aucun chat disponible.</li>
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
         {% endfor %}
-    </ul>
+        </tbody>
+    </table>
+
 {% endblock %}

@@ -1,0 +1,20 @@
+<h1>{{ member.email }}</h1>
+<h2>Mes vitrines</h2>
+
+<ul>
+    {% for vitrine in member.vitrines %}
+        <li>
+            <a href="{{ path('app_vitrine_show', {'id': vitrine.id}) }}">
+                {{ vitrine.description }}
+            </a>
+        </li>
+    {% else %}
+        <li>Aucune vitrine</li>
+    {% endfor %}
+</ul>
+
+<a href="{{ path('app_vitrine_new', {'id': member.id}) }}">Créer une nouvelle galerie</a>
+
+<a href="{{ path('refuge_show', {'id': member.refuge.id}) }}">
+    Ma refuge
+</a>
